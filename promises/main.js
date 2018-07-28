@@ -38,10 +38,13 @@ let promiseTest4=()=>{
     },1000)
     });
   };
-  
-  let test= async() =>{
-    const result = await promiseTest4();
-    console.log(result);
-  }
+
+    let getRslt=new Promise((resolve,reject)=>{
+        resolve(promiseTest4());
+    });
+    let test= async() =>{
+      const result = await getRslt();
+      console.log(result);
+    }
   
   test(); 

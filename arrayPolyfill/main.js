@@ -1,40 +1,43 @@
-Array.prototype.polyMap=function(callback){
-    var length=this.length,
-        arr=new Array(length),
-        count=0,
-        givenArr=Object(this);
-    
-    if(arguments[1]){
-       var context=arguments[1];
-    }
-    if((typeof (callback)!=="function")){
-        throw new Error(callback+" it's not a function");
-    }
-
-    if(arguments[1]){
+if(!Array.prototype.map){
+    Array.prototype.Map=function(callback){
+        var length=this.length,
+            arr=new Array(length),
+            count=0,
+            givenArr=this,
+            context;
+        
+        if(arguments[1]){
         var context=arguments[1];
-    }
-    
+        }
+        if((typeof (callback)!=="function")){
+            throw new Error(callback+" it's not a function");
+        }
 
-    if(!Array.isArray(givenArr)){
-        throw new Error(givenArr+" it's not an array");
-    }
+        if(arguments[1]){
+            var context=arguments[1];
+        }
+        
 
-   while(count<length){
-      var current=this[count],
-          middleResult;
-          
-          middleResult=callback.call(context,current,count,givenArr);
-     
-     arr[count]=middleResult;
-     count++;
-    }
-    return arr; 
-    };
-    let arr=[1,2,3].polyMap(function(el){
-        return el+1;
-    });
-    console.log(arr);
+        if(!Array.isArray(givenArr)){
+            throw new Error(givenArr+" it's not an array");
+        }
+
+    while(count<length){
+        var current=this[count],
+            middleResult;
+            
+            middleResult=callback.call(context,current,count,givenArr);
+        
+        arr[count]=middleResult;
+        count++;
+        }
+        return arr; 
+        };
+}        
+        let arr=[1,2,3].map(function(el){
+            return el+1;
+        });
+        console.log(arr);
 
 Array.prototype.polFilter=function(callback){
     
@@ -42,14 +45,15 @@ Array.prototype.polFilter=function(callback){
         currentArray=this,
         count=0,
         currentElement=null;
-        newArray=[];
+        newArray=[],
+        context;
     
     if((typeof (callback)!=="function")){
         throw new Error(callback+" it's not a function");
     }
 
     if(arguments[1]){
-        var context=arguments[1];
+        context=arguments[1];
     }
     
 
