@@ -43,8 +43,12 @@ let promiseTest4=()=>{
         resolve(promiseTest4());
     });
     let test= async() =>{
+      try{
       const result = await getRslt();
       console.log(result);
+      }catch(err){
+        console.error(err);
+      }
     }
   
   test(); 
