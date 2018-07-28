@@ -39,9 +39,11 @@ let promiseTest4=()=>{
     });
   };
 
-    let getRslt=new Promise((resolve,reject)=>{
+    let getRslt=()=>{
+    return new Promise((resolve,reject)=>{
         resolve(promiseTest4());
     });
+  }
     let test= async() =>{
       try{
       const result = await getRslt();

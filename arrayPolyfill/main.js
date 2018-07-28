@@ -1,5 +1,5 @@
 if(!Array.prototype.map){
-    Array.prototype.Map=function(callback){
+    Array.prototype.map=function(callback){
         var length=this.length,
             arr=new Array(length),
             count=0,
